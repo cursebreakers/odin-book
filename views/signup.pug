@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  div.authBox
+    h1= title
+    if errors && errors.length > 0
+      ul
+        each error in errors
+          li= error.message
+    form#authForm(action="/auth/new" method="POST")
+      input(type="text" name="username" placeholder="Username")
+      input(type="password" name="password" placeholder="Password")
+      input(type="password" name="confirmPassword" placeholder="Confirm password")
+      button(type="submit") Sign up
+      
+    div.authTag
+      a.authToggle(href=`/auth`) Log in
+    div.authFoot
+      a.docs(href=`/docs`) README.md

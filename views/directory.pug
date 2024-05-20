@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  div.dashHead
+    a.profileLink(href=`/`) Home
+    a.settings(href='/settings') ⚙️
+  div.dashBar
+    div.incoming
+      a.chatter(href='/inbox') ✉️
+      a.noter(href='/notes') 🔔
+
+  div#follows
+    div.followers
+      h4 Followers:
+      each follower in user.followers
+        div.followerDiv
+          a(href=`/${follower.user.username}`) #{follower.user.username}
+          
+    div.following
+      h4 Following:
+      each followingUser in user.following
+        div.followingDiv
+          a(href=`/${followingUser.user.username}`) #{followingUser.user.username}
+          form(action=`/unfollow/${followingUser.user.username}` method="POST")
+            button(type="submit") Unfollow
+    div.allUsers
+      h4 Directory (All users)
+      each user in allUsers
+        div.userProfile
+          a(href=user.profileUrl) #{user.username} -  Followers: #{user.followers.length}
+          div.directoryControls
+            form(action=`/follow/${user.username}`, method='POST')
+              input(type='hidden', name='_method', value='POST')
+              button(type='submit') Follow
+            form(action=`/chat/new/${user.username}`, method='POST')
+              input(type='hidden', name='_method', value='POST')
+              button(type='submit') Message
+
+  div.appStatus
+    h4 App Status
+    p#userTicker Active Users: 
+    p#apiHealth
+  
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

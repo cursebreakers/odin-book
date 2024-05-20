@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  div.chatHead
+    a.chatter(href='/inbox') ✉️
+    a.profiler(href=`/${recipient.username}`) #{recipient.username}
+    a.exitInbox(href=`/`) Home
+  div#chat
+    div#chatTray
+     each message in specChat.messageThread
+      div.messBox(class=message.user.username === recipient.username ? 'recipient' : '')
+        p.messageContent #{message.message}
+        p.senderTag ~#{message.user.username}
+        p.messTime 
+          - const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
+          - const formattedDate = message.timestamp.toLocaleDateString('en-US', options);
+          - const timeOptions = { hour: '2-digit', minute: '2-digit' };
+          - const formattedTime = message.timestamp.toLocaleTimeString('en-US', timeOptions);
+          | #{formattedDate} @ #{formattedTime}
+
+    div.messageEditor
+      form#chatForm(action=`/thread/${specChat._id}` method="POST")
+        input(type="text" id="messageInput" name="message" placeholder="Type your message..." required)
+        button(type="submit") Send
+  
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

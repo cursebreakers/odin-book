@@ -1,0 +1,56 @@
+extends layout
+
+block content
+
+  div.profileHead
+    img#profileAvatar(src=`${user.avatar}`)
+    a.homeLink(href=`${user.username}`) #{user.username}
+    a(href="/") Home
+
+  div#profileDiv
+    p #{user.status}
+    div.profileControls
+      form(action=`/follow/${user.username}`, method='POST')
+        input(type='hidden', name='_method', value='POST')
+        button(type='submit') Follow
+      form(action=`/chat/new/${user.username}`, method='POST')
+        input(type='hidden', name='_method', value='POST')
+        button(type='submit') Message
+    h4 About:
+    p #{user.bio}
+ 
+  div#profileFeed
+    each post in posts
+      div.feedPost
+        div.postHead
+          a.authorTag(href=`/${post.author.username}`) #{post.author.username}
+          a.permaStamp(href=`/${post.author.username}/${post._id}`) #{post.timestamp}
+        div.postContent
+          each contentItem in post.content
+            if contentItem.text
+              p #{contentItem.text}
+            if contentItem.imageUrl
+              img.postPic(src=contentItem.imageUrl, alt="Image Preview")
+        p #{post.tags}
+        div.reacts
+          div.liker
+            form#likeForm(action=`/${post.author.username}/${post._id}/like`, method="POST")
+              button(type="submit") #{post.likes.length > 0 ? `${post.likes.length}` : ''} 👌
+          a.commenter(href='#') #{post.comments.length > 0 ? `${post.comments.length}` : ''} 💬
+        div.commentContainer
+          each comment in post.comments
+            div.commentDiv
+              p #{comment.content}
+              p ~#{comment.user.username}
+          form#commentForm(action=`/${post.author.username}/${post._id}/comment`, method="POST")
+            input(type="text" name="comment" placeholder="Write a comment..." required)
+            button(type="submit") Comment
+
+  div.appStatus
+    a.homeLink(href='/') Home
+    h4 App Status
+    div#userTicker Online: 
+    div#apiHealth
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

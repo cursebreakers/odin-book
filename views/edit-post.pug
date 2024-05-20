@@ -1,0 +1,48 @@
+extends layout
+
+block content
+
+  div.profileHead
+    a.cancel(href='/') Cancel
+    form#deletePost(action=`/${post.author.username}/${post._id}/delete` method='POST')
+      button(type="submit") Delete Post
+ 
+  div#postEditor
+    form#editorForm(action=`/${post.author.username}/${post._id}/edit` method="POST" enctype="multipart/form-data")
+      h4 Edit Content:
+      input(type="text" name="text" value=`${post.content[0].text}`)
+      br
+      br
+      label(for="imageUrl") Replace Image:
+        br
+        img#imagePreview(src=`${post.content[0].imageUrl}`)
+        br
+        input(type="file" id="imageUrl" name="imageUrl" value=`${post.content[0].imageUrl}` placeholder=`${post.content[0].imageUrl}` accept="image/*")
+        br
+      h4 Tags: 
+      input(type="text" name="tags" value=`${post.tags.join(', ')}`)
+      p Timestamp cannot be edited.
+      a.permaStamp(href=`/${post.author.username}/${post._id}`) #{post.timestamp}
+      br
+      br
+      button(type="submit") Save
+      
+  div.appStatus
+    a.homeLink(href=`/`) Home
+    h4 App Status
+    div#userTicker Online: 
+    div#apiHealth
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")
+  script.
+    document.getElementById('imageUrl').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(e) {
+        document.getElementById('imagePreview').src = e.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });

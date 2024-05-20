@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  div.dashHead
+    a.profileLink(href=`/`) Home
+    a.settings(href='/settings') ⚙️
+  div.dashBar
+    div.incoming
+      a.chatter(href='/inbox') ✉️
+      a.noter(href='/notes') 🔔
+    div.inboxHead
+      h4 Notifications
+
+    div#noteTray
+      each postComment in postComments
+        div.commentNote
+          a.comm_note(href=postComment.postUrl) New comment on your post
+          each comment in postComment.comments
+            if comment.new
+              form.markRead(action='/notes/read' method='POST')
+                input(type='hidden' name='username' value=postComment.author.username)
+                input(type='hidden' name='commentId' value=comment._id)
+                button.readBtn(type='submit') 👀
+      each likedPost in likedPosts
+        div.likeNote
+          a.like_note(href=likedPost.postUrl) New like on your post
+          each like in likedPost.likes
+            if like.new            
+              form.markRead(action='/notes/read' method='POST')
+                input(type='hidden' name='username' value=likedPost.author.username)
+                input(type='hidden' name='likeId' value=like._id)
+                button.readBtn(type='submit') 👀
+      each follow in follows
+        div.followNote
+          a.foll_note(href=follow.user.profileUrl) #{follow.user.username} followed you
+          form.markRead(action=`/notes/read` method="POST")
+            input(type="hidden" name="username" value=follow.user.username)
+            button.readBtn(type="submit") 👀
+
+  div.appStatus
+    h4 App Status
+    p#userTicker Active Users: 
+    p#apiHealth
+  
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

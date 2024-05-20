@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  div.dashHead
+    a.profileLink(href=`/`) Home
+    a.settings(href='/settings') ⚙️
+  div.dashBar
+    div.incoming
+      a.chatter(href='/inbox') ✉️
+      a.noter(href='/notes') 🔔
+    div.inboxHead
+      h4 Inbox
+
+  div#inbox
+    div.inboxTray
+      if inbox.length > 0
+        each chat in inbox
+          - const otherUser = chat.partyMembers.find(member => member.username !== user.username);
+          if otherUser
+            a.threadLink(href=`/thread/${chat._id}`) #{otherUser.username}
+      else
+        p No chats available
+
+  div.appStatus
+    h4 App Status
+    p#userTicker Active Users: 
+    p#apiHealth
+  
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

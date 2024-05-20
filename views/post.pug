@@ -1,0 +1,44 @@
+extends layout
+
+block content
+
+  div.profileHead
+    a.homeLink(href=`/${user.username}`) #{user.username}
+    a.linkLink(href='/') Home
+ 
+  div#singlePost
+    div.feedPost
+      div.postHead
+        if authedUser.username === post.author.username
+          a.editLink(href=`/${post.author.username}/${post._id}/edit`) Edit Post
+        a.authorTag(href=`/${post.author.username}`) #{post.author.username}
+        a.permaStamp(href=`/${post.author.username}/${post._id}`) #{post.timestamp}
+      div.postContent
+      each contentItem in post.content
+        if contentItem.text
+          p #{contentItem.text}
+        if contentItem.imageUrl
+          img.postPic(src=contentItem.imageUrl, alt="Image Preview")
+      p #{post.tags.join(', ')}
+      div.reacts
+        div.liker
+          form#likeForm(action=`/${post.author.username}/${post._id}/like`, method="POST")
+            button(type="submit") #{post.likes.length > 0 ? `${post.likes.length}` : ''} 👌
+        a.commenter #{post.comments.length > 0 ? `${post.comments.length}` : ''} 💬
+      div.commentContainer
+        each comment in post.comments
+          div.commentDiv
+            p #{comment.content}
+            p.commenterUsername ~#{comment.user.username}
+        form#commentForm(action=`/${post.author.username}/${post._id}/comment`, method="POST")
+          input(type="text", name="comment", placeholder="Write a comment...")
+          button(type="submit") Comment
+
+  div.appStatus
+    a.homeLink(href=`/`) Home
+    h4 App Status
+    div#userTicker Online: 
+    div#apiHealth
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")

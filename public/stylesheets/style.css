@@ -1,0 +1,490 @@
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  height: 100%;
+  font: 18px 'dm';
+  scrollbar-width: none;
+}
+
+@font-face {
+  font-family: 'dm';
+  src: url('/font/dmsans.ttf');
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.authBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
+
+#authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  padding: 12px;
+  border: 1px solid #111;
+}
+
+#authForm > input {
+  margin: 8px;
+  padding: 6px;
+  font-size: 16px;
+}
+
+#authForm > button {
+  margin: 8px;
+  padding: 6px;
+  font-size: 16px;
+  width: 44%;
+}
+
+.authTag {
+  margin: 12px;
+  padding: 6px;
+}
+
+.authFoot {
+  position: absolute;
+  bottom: 12px;
+}
+
+.dashHead {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+}
+
+.dashHead > a {
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.dashBar {
+  padding: 12px;
+  border-top: 1px ridge #111;
+}
+
+.poster {
+  padding: 12px;
+}
+
+#postForm {
+  padding: 12px;
+}
+
+.incoming {
+  display: flex;
+  justify-content: space-between;
+}
+
+.incoming > a {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+
+.feedSelector {
+  border-top: 1px ridge #111;
+  padding: 12px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.followers {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.following {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.followerDiv {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.followingDiv {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.allUsers {
+  padding: 12px;
+}
+
+#feedTray {
+  padding: 12px;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.feedPost {
+  padding: 12px;
+  border-top: 3px ridge #111;
+}
+
+.postHead {
+  display: flex;
+  flex-direction: column;
+}
+
+.postContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.postContent > p {
+  padding: 8px;
+}
+
+.postPic {
+  align-self: center;
+  border: 1px solid #111;
+  border-radius: 1px;
+}
+
+.authorTag {
+  font-size: 18px;
+  font-weight: 600;
+}
+.permaStamp {
+  font-size: 14px;
+}
+
+.reacts { 
+  display: flex;
+  justify-content: space-between;
+}
+
+#likeForm > button {
+  padding: 6px;
+  font-size: 18px;
+  background-color: transparent;
+  border: 1px ridge #111;
+  border-radius: 5px;
+  width: 90px;
+}
+
+.commenter {
+  text-align: center;
+  padding: 6px;
+  font-size: 18px;
+  text-decoration: none;
+  border: 1px ridge #111;
+  color: #000;
+  border-radius: 5px;
+  width: 90px;
+}
+
+.commentContainer {
+  display: none;
+  margin-top: 10px;
+  border-top: 2px ridge #111;
+}
+
+.commentDiv {
+  margin-top: 5px;
+  border-top: 1px ridge #111;
+}
+
+#commentForm {
+  padding: 8px;
+  display: flex;
+  width: 100%;
+}
+
+.expanded {
+  display: flex;
+  flex-direction: column;
+}
+
+.commentDiv > p {
+  font-size: 16px;
+}
+
+.chatHead {
+  display: flex;
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+}
+
+.chatHead > a {
+  font-size: 18px;;
+}
+
+.exitInbox {
+  position: fixed;
+  top: 0;
+  right: 12px;
+}
+
+.profiler {
+  position: fixed;
+  top: 0;
+  right: 50%;
+}
+
+#inbox {
+  padding: 1px;
+  background-color: aquamarine;
+}
+
+.inboxTray {
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF;
+}
+
+.threadLink {
+  padding: 8px;
+  border: 1px ridge #111;
+}
+
+#chat {
+  margin: 0;
+  width: 100%;
+}
+
+#chatTray {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 52px;
+}
+
+.messBox {
+  border: 2px solid #111;
+  border-radius: 8px;
+  width: 69%;
+  align-self: flex-end;
+  margin: 8px;
+  padding: 8px;
+}
+
+.recipient {
+  align-self: flex-start;
+}
+
+.senderTag {
+  font-size: 14px;
+}
+
+.messTime {
+  font-size: 12px;
+}
+
+.messageEditor {
+  border-top: 2px solid #111;
+  width: 100%;
+  padding: 2px;
+  position: fixed;
+  bottom: 0;
+  background-color: #111;
+}
+
+#chatForm {
+  display: flex;
+  justify-content: space-between;
+  padding: 2px;
+}
+
+#chatForm > input {
+  width: 100%;
+  font-size: 16px;
+}
+
+
+#chatForm > button {
+  width: 25%;
+  font-size: 16px;
+}
+
+#noteTray {
+  display: flex;
+  flex-direction: column;
+  padding: 4px;
+}
+
+.commentNote {
+  padding: 8px;
+}
+
+.likeNote {
+  padding: 8px;
+}
+
+.follow {
+  padding: 8px;
+}
+
+.readBtn {
+  background-color: #111;
+}
+
+.commentNote {
+  display: flex;
+  justify-content: space-between;
+}
+
+.likeNote {
+  display: flex;
+  justify-content: space-between;
+}
+
+.followNote {
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileHead {
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+#profileAvatar {
+  max-width: 240px;
+  width: 75px;
+}
+
+#profileDiv {
+  padding: 12px;
+}
+
+.profileControls {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#profileFeed {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#editorForm > input {
+  width: 100%;
+}
+
+#postEditor {
+  padding: 12px;
+}
+
+#imagePreview {
+  max-width: 240px;
+}
+
+.appStatus {
+  font-size: 14px;
+  border-top: 1px ridge #111;
+  padding: 12px;
+}
+
+.allUsers {
+  padding: 8px;
+}
+
+.userProfile {
+  border-top: 1px ridge #111;
+  padding: 8px;
+}
+
+.directoryControls {
+  padding: 8px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#accountSettings {
+  padding: 12px;
+}
+
+#settingsForm {
+  padding: 12px;
+}
+
+#setAvatar {
+  max-width: 180px;
+  padding: 12px;
+  border-radius: 50px;
+}
+
+#apiHealth {
+  font-size: 14px;
+}
+
+#docs {
+  padding: 18px;
+}
+
+/* Screens less than 400px */
+@media only screen and (max-width: 400px) {
+
+  .profileHead {
+    padding: 6px;
+  }
+
+  .postPic {
+    max-width: 280px;
+  }
+}
+
+/* Screens between 401px and 520px */
+@media only screen and (min-width: 401px) and (max-width: 520px) {
+
+  .profileHead {
+    padding: 8px;
+  }
+
+  .postPic {
+    max-width: 365px;
+  }
+}
+
+/* Screens between 521px and 720px */
+@media only screen and (min-width: 521px) and (max-width: 720px) {
+
+  .profileHead {
+    padding: 8px;
+  }
+
+  .postPic {
+    max-width: 480px;
+  }
+  
+}
+
+
+/* Screens larger than 720px */
+@media only screen and (min-width: 721px) {
+
+  .profileHead {
+    padding: 12px;
+  }
+
+  .postPic {
+    max-width: 650px;
+  }
+}
+

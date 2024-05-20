@@ -1,0 +1,40 @@
+{
+  "name": "cloudmin9",
+  "version": "0.0.9",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "1.20.2",
+    "cloudinary": "^2.2.0",
+    "connect-mongodb-session": "^5.0.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "16.4.5",
+    "express": "~4.16.1",
+    "express-async-handler": "^1.2.0",
+    "express-session": "^1.17.2",
+    "express-validator": "^7.0.1",
+    "http-errors": "~1.6.3",
+    "jsonwebtoken": "^9.0.2",
+    "markdown-it": "^14.1.0",
+    "mongodb": "6.5.0",
+    "mongoose": "8.3.1",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "~1.x",
+    "pug": "~3.x",
+    "set-value": "^4.1.0",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5",
+    "url-parse": "^1.5.10",
+    "validator": "^13.11.0",
+    "winston": "^3.3.3"
+  }
+}

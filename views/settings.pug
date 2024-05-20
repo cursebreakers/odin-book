@@ -1,0 +1,33 @@
+extends layout
+
+block content
+
+  div.dashHead
+    a.homeLink(href='/') Back
+    a.docs(href=`/docs`) Help
+    form(action='/auth/out' method='POST')
+      button(type='submit') Log out
+
+  div#accountSettings
+    h3 #{user.username}
+    form#settingsForm(action='/settings' method='POST' enctype='multipart/form-data')
+      h4 Avatar:
+      img#setAvatar(src=`${user.avatar}`)
+      br
+      input(type="file" name="imageUrl") 
+      br
+      h4 Status: 
+      input(type="text" name="status" value=`${user.status}`)
+      h4 Bio: 
+      input(type="text" name="bio" value=`${user.bio}`)
+      br
+      br
+      button(type="submit") Save
+
+  div.appStatus
+    h4 App Status
+    div#userTicker Online: 
+    div#apiHealth
+
+  script(src="/socket.io/socket.io.js")
+  script(src="/javascripts/client.js")
