@@ -2,9 +2,9 @@
 
 v0.0.9 (cloudmin9)
 
-Live @[Glitch.com](/)
+Live @[Glitch.com](https://gray-festive-candytuft.glitch.me)
 
-[GitHub Repo](/)
+[GitHub Repo](https://github.com/cursebreakers/odin-book)
 
 ## Overview
 
